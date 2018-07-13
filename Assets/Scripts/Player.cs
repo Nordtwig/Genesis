@@ -5,10 +5,10 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 
     //Set useRotation to preferred movement type
-    bool useRotation = false;
+    [SerializeField] bool useRotation = false;
     //Set speed of rotation and movement
-    int turnSpeed = 200;
-    int movementSpeed = 5;
+    [SerializeField] int movementSpeed = 5;
+    [SerializeField] int turnSpeed = 200;
 
     // Use this for initialization
     void Start () {
@@ -18,7 +18,7 @@ public class Player : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
 
         //Two different kinds of player movement, set in useRotation global boolean
