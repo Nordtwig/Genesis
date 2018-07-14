@@ -65,4 +65,9 @@ public class Player : MonoBehaviour {
         GameObject keyModel = transform.Find("KeyModel").gameObject;
         keyModel.SetActive(false);
     }
+
+    public bool IsHoldingKey()
+    {
+        return isHoldingKey;
+    }
 }
