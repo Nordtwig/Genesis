@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class Door : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+    
+    [SerializeField] Items.DoorKeyType doorType;
+
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -19,15 +22,16 @@ public class Door : MonoBehaviour {
         if (c.gameObject.tag == "Player")
         {
             Player playerScript = c.gameObject.GetComponent("Player") as Player;
-            if (playerScript.IsHoldingKey())
+            if (playerScript.IsHoldingKey() && playerScript.HeldKeyType() == doorType)
             {
-                OpenDoor();
+                OpenDoor(playerScript);
             }
         }
     }
 
-    void OpenDoor()
+    void OpenDoor(Player playerScript)
     {
+        playerScript.RemoveKey();
         Destroy(this.gameObject);
     }
 

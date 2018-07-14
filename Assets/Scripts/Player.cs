@@ -12,14 +12,17 @@ public class Player : MonoBehaviour {
 
     //Is set to true when key is picked up
     private bool isHoldingKey;
+    private Items.DoorKeyType heldKeyType;
+
+    GameObject keyModelInstance;
+    public GameObject keyModelPrefab;
 
     // Use this for initialization
     void Start () {
 
         isHoldingKey = false;
-        
-		
-	}
+
+    }
 	
 	// Update is called once per frame
     void FixedUpdate()
@@ -44,18 +47,26 @@ public class Player : MonoBehaviour {
         
     }
 
-    public void AddKey()
+    public void AddKey(Items.DoorKeyType type)
     {
+        //Add a check here to see if already carrying a key
+        //...
+
         isHoldingKey = true;
-        GameObject keyModel = transform.Find("KeyModel").gameObject;
-        if(keyModel != null)
-        {
-            keyModel.SetActive(true);
-        }
-        else
-        {
-            Debug.Log("Could not find object.");
-        }
+        heldKeyType = type;
+
+        //Load in the correct prefab belonging to the key type
+        string prefabString = "Prefabs/Items/" + heldKeyType.ToString();
+        GameObject keyModelPrefab = (GameObject)Resources.Load(prefabString);
+
+        //Instantiate the prefab of the key and place it on top of the player model
+        keyModelInstance = Instantiate(keyModelPrefab, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+        keyModelInstance.transform.parent = transform;
+        float playerHeight = transform.lossyScale.y;
+        Vector3 keyPosition = new Vector3(transform.position.x, transform.position.y + playerHeight, transform.position.z);
+        keyModelInstance.transform.SetPositionAndRotation(keyPosition, transform.rotation);
+        keyModelInstance.name = "KeyModel";
+
         
     }
 
@@ -63,11 +74,16 @@ public class Player : MonoBehaviour {
     {
         isHoldingKey = false;
         GameObject keyModel = transform.Find("KeyModel").gameObject;
-        keyModel.SetActive(false);
+        Destroy(keyModel);
     }
 
     public bool IsHoldingKey()
     {
         return isHoldingKey;
+    }
+
+    public Items.DoorKeyType HeldKeyType()
+    {
+        return heldKeyType;
     }
 }

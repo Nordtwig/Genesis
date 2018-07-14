@@ -19,7 +19,7 @@ public class PickUp : MonoBehaviour {
         if (c.gameObject.tag == "Player")
         {
             OnPickup(c.gameObject);
-            Destroy(this.gameObject);
+            this.gameObject.SetActive(false);
         }
     }
 
