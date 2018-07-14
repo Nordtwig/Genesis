@@ -14,17 +14,15 @@ public class Player : MonoBehaviour {
     private bool isHoldingKey;
     private Items.DoorKeyType heldKeyType;
 
-    GameObject keyModelInstance;
-    public GameObject keyModelPrefab;
+    GameObject keySpawnPoint;
+    GameObject keyModel;
 
-    // Use this for initialization
     void Start () {
 
         isHoldingKey = false;
 
     }
 	
-	// Update is called once per frame
     void FixedUpdate()
     {
 
@@ -47,25 +45,33 @@ public class Player : MonoBehaviour {
         
     }
 
-    public void AddKey(Items.DoorKeyType type)
+    public void AddKey(Items.DoorKeyType type, GameObject newKeySpawnPoint)
     {
-        //Add a check here to see if already carrying a key
-        //...
+        //Check to see if player is already carrying a key
+        if(isHoldingKey == true)
+        {
+            //If already carrying a key, reset the carried key
+            //Then pick up the new one
+            keySpawnPoint.SetActive(true);
+            Destroy(keyModel);
+
+        }
 
         isHoldingKey = true;
         heldKeyType = type;
+        keySpawnPoint = newKeySpawnPoint;
 
-        //Load in the correct prefab belonging to the key type
+        //Load the correct prefab belonging to the key type
         string prefabString = "Prefabs/Items/" + heldKeyType.ToString();
         GameObject keyModelPrefab = (GameObject)Resources.Load(prefabString);
 
         //Instantiate the prefab of the key and place it on top of the player model
-        keyModelInstance = Instantiate(keyModelPrefab, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
-        keyModelInstance.transform.parent = transform;
+        keyModel = Instantiate(keyModelPrefab, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+        keyModel.transform.parent = transform;
         float playerHeight = transform.lossyScale.y;
         Vector3 keyPosition = new Vector3(transform.position.x, transform.position.y + playerHeight, transform.position.z);
-        keyModelInstance.transform.SetPositionAndRotation(keyPosition, transform.rotation);
-        keyModelInstance.name = "KeyModel";
+        keyModel.transform.SetPositionAndRotation(keyPosition, transform.rotation);
+        keyModel.name = "KeyModel";
 
         
     }
@@ -73,7 +79,6 @@ public class Player : MonoBehaviour {
     public void RemoveKey()
     {
         isHoldingKey = false;
-        GameObject keyModel = transform.Find("KeyModel").gameObject;
         Destroy(keyModel);
     }
 

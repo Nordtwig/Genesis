@@ -22,6 +22,6 @@ public class Key : PickUp
     override public void OnPickup(GameObject player)
     {
         Player playerScript = player.GetComponent("Player") as Player;
-        playerScript.AddKey(keyType);
+        playerScript.AddKey(keyType, this.gameObject);
     }
 }
