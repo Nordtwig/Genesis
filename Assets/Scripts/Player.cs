@@ -5,14 +5,18 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 
     //Set useRotation to preferred movement type
-    [SerializeField] bool useRotation = false;
+    [SerializeField] bool useRotation;
     //Set speed of rotation and movement
-    [SerializeField] int movementSpeed = 5;
-    [SerializeField] int turnSpeed = 200;
+    [SerializeField] int movementSpeed; //A value around 3-7
+    [SerializeField] int turnSpeed; //A value around 200-500
+
+    //Is set to true when key is picked up
+    private bool isHoldingKey;
 
     // Use this for initialization
     void Start () {
 
+        isHoldingKey = false;
         
 		
 	}
@@ -38,5 +42,27 @@ public class Player : MonoBehaviour {
             transform.Translate(0, 0, z);
         }
         
+    }
+
+    public void AddKey()
+    {
+        isHoldingKey = true;
+        GameObject keyModel = transform.Find("KeyModel").gameObject;
+        if(keyModel != null)
+        {
+            keyModel.SetActive(true);
+        }
+        else
+        {
+            Debug.Log("Could not find object.");
+        }
+        
+    }
+
+    public void RemoveKey()
+    {
+        isHoldingKey = false;
+        GameObject keyModel = transform.Find("KeyModel").gameObject;
+        keyModel.SetActive(false);
     }
 }
