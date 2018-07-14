@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Door : MonoBehaviour {
 
-    
-    [SerializeField] Items.DoorKeyType doorType;
+    [SerializeField] StaticValues.DoorKeyType doorType;
 
     // Use this for initialization
     void Start () {

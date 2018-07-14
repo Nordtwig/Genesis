@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
+    GameObject spawnPoint;
+
     //Set useRotation to preferred movement type
     [SerializeField] bool useRotation;
     //Set speed of rotation and movement
-    [SerializeField] int movementSpeed; //A value around 3-7
-    [SerializeField] int turnSpeed; //A value around 200-500
+    [SerializeField] int movementSpeed; //A value around 3-10 is suitable
+    [SerializeField] int turnSpeed; //A value around 200-500 is suitable
 
     //Is set to true when key is picked up
     private bool isHoldingKey;
-    private Items.DoorKeyType heldKeyType;
+    private StaticValues.DoorKeyType heldKeyType;
 
     GameObject keySpawnPoint;
     GameObject keyModel;
@@ -20,6 +22,10 @@ public class Player : MonoBehaviour {
     void Start () {
 
         isHoldingKey = false;
+        spawnPoint = GameObject.Find("PlayerSpawnPoint").gameObject;
+        Debug.Log("Initiating Player");
+
+        transform.position = spawnPoint.transform.position;
 
     }
 	
@@ -45,7 +51,7 @@ public class Player : MonoBehaviour {
         
     }
 
-    public void AddKey(Items.DoorKeyType type, GameObject newKeySpawnPoint)
+    public void AddKey(StaticValues.DoorKeyType type, GameObject newKeySpawnPoint)
     {
         //Check to see if player is already carrying a key
         if(isHoldingKey == true)
@@ -87,7 +93,7 @@ public class Player : MonoBehaviour {
         return isHoldingKey;
     }
 
-    public Items.DoorKeyType HeldKeyType()
+    public StaticValues.DoorKeyType HeldKeyType()
     {
         return heldKeyType;
     }

@@ -6,11 +6,11 @@ public class Key : PickUp
 {
 
     
-    [SerializeField] Items.DoorKeyType keyType;
+    [SerializeField] StaticValues.DoorKeyType keyType;
 
     // Use this for initialization
     void Start () {
-
+        
 
     }
 
