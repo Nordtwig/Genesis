@@ -14,14 +14,11 @@ public class Key : PickUp
 
     }
 
-    // Update is called once per frame
-    void Update () {
-		
-	}
 
     override public void OnPickup(GameObject player)
     {
         Player playerScript = player.GetComponent("Player") as Player;
-        playerScript.AddKey(keyType, this.gameObject);
+        playerScript.AddKey(keyType, this.gameObject.GetComponent("Key") as Key);
     }
+
 }

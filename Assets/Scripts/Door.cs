@@ -11,10 +11,6 @@ public class Door : MonoBehaviour {
 		
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     void OnCollisionEnter(Collision c)
     {
@@ -31,7 +27,12 @@ public class Door : MonoBehaviour {
     void OpenDoor(Player playerScript)
     {
         playerScript.RemoveKey();
-        Destroy(this.gameObject);
+        gameObject.SetActive(false);
+    }
+
+    public void ResetDoor()
+    {
+        gameObject.SetActive(true);
     }
 
 }

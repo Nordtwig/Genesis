@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PickUp : MonoBehaviour {
 
+
 	// Use this for initialization
 	void Start () {
-
     }
 	
 	// Update is called once per frame
@@ -14,14 +14,6 @@ public class PickUp : MonoBehaviour {
 		
 	}
 
-    /*void OnCollisionEnter(Collision c)
-    {
-        if (c.gameObject.tag == "Player")
-        {
-            OnPickup(c.gameObject);
-            this.gameObject.SetActive(false);
-        }
-    }*/
 
     private void OnTriggerEnter(Collider other)
     {
@@ -35,6 +27,11 @@ public class PickUp : MonoBehaviour {
     virtual public void OnPickup(GameObject player)
     {
         //Override in child class
+    }
+
+    public void ResetPickup()
+    {
+        this.gameObject.SetActive(true);
     }
 
 

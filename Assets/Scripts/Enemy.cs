@@ -8,13 +8,15 @@ public class Enemy : MonoBehaviour {
     enum MovementType { x, z, none };
     [SerializeField] MovementType movementType;
 
+    Vector3 spawnPoint;
+
     // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    void Start() {
+        spawnPoint = transform.position;
+    }
+
+    // Update is called once per frame
+    void Update () {
 
         var move = Time.deltaTime * movementSpeed;
 
@@ -36,19 +38,22 @@ public class Enemy : MonoBehaviour {
     }
 
 
-    void OnCollisionEnter(Collision c)
+    void OnCollisionEnter(Collision other)
     {
-
-        //Debug.Log("Enemy colliding with object with tag: " + c.gameObject.tag);
-
-        if (c.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player")
         {
-            //Player damage stuff goes here probably
+            Player playerScript = other.gameObject.GetComponent("Player") as Player;
+            playerScript.PlayerDeath();
         }
         else {
             //Collision with environment, reverse direction
             movementSpeed *= -1;
         }
+    }
+
+    public void ResetEnemy()
+    {
+        transform.position = spawnPoint;
     }
 
 }

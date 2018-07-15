@@ -16,7 +16,7 @@ public class Player : MonoBehaviour {
     private bool isHoldingKey;
     private StaticValues.DoorKeyType heldKeyType;
 
-    GameObject keySpawnPoint;
+    Key keySpawnPoint;
     GameObject keyModel;
 
     void Start () {
@@ -51,14 +51,14 @@ public class Player : MonoBehaviour {
         
     }
 
-    public void AddKey(StaticValues.DoorKeyType type, GameObject newKeySpawnPoint)
+    public void AddKey(StaticValues.DoorKeyType type, Key newKeySpawnPoint)
     {
         //Check to see if player is already carrying a key
         if(isHoldingKey == true)
         {
             //If already carrying a key, reset the carried key
             //Then pick up the new one
-            keySpawnPoint.SetActive(true);
+            keySpawnPoint.ResetPickup();
             Destroy(keyModel);
 
         }
@@ -96,5 +96,19 @@ public class Player : MonoBehaviour {
     public StaticValues.DoorKeyType HeldKeyType()
     {
         return heldKeyType;
+    }
+
+    public void PlayerDeath()
+    {
+        //Show death message, any other things to do upon death
+        print("You died!");
+        //Then reset level
+        GameController.gameController.ResetLevel();
+    }
+
+    public void ResetPlayer()
+    {
+        RemoveKey();
+        transform.position = spawnPoint.transform.position;
     }
 }
