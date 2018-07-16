@@ -1,11 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
 
     //Make the game controller a static singleton
     public static GameController gameController = null;
+
+    Text scoreText;
+    Text statusText;
+    Image scoreBackground;
+    Image statusBackground;
 
     GameObject player;
     List<GameObject> doors = new List<GameObject>();
@@ -35,6 +41,12 @@ public class GameController : MonoBehaviour {
     void InitGame()
     {
         //Any initialization goes here
+
+        //Sets necessary references to UI components
+        scoreText = GameObject.Find("Canvas/ScoreText").GetComponent<Text>();
+        statusText = GameObject.Find("Canvas/StatusText").GetComponent<Text>();
+        scoreBackground = GameObject.Find("Canvas/ScoreBackground").GetComponent<Image>();
+        statusBackground = GameObject.Find("Canvas/StatusBackground").GetComponent<Image>();
 
         //Sets references to all objects that vill be reset upon LevelReset
         player = GameObject.Find("Player").gameObject;
@@ -79,6 +91,26 @@ public class GameController : MonoBehaviour {
             enemyScript.ResetEnemy();
         }
         
+    }
+
+    public void ShowMessage(StaticValues.MessageType messageType)
+    {
+        string messageString = "";
+        StaticValues.messages.TryGetValue(messageType, out messageString);
+
+        StartCoroutine(ShowStatusText(messageString, 1));
+    }
+
+    IEnumerator ShowStatusText(string message, float delay)
+    {
+        statusText.text = message;
+        statusText.enabled = true;
+        statusBackground.enabled = true;
+
+        yield return new WaitForSeconds(delay);
+
+        statusText.enabled = false;
+        statusBackground.enabled = false;
     }
 
 }

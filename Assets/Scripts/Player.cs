@@ -101,7 +101,7 @@ public class Player : MonoBehaviour {
     public void PlayerDeath()
     {
         //Show death message, any other things to do upon death
-        print("You died!");
+        GameController.gameController.ShowMessage(StaticValues.MessageType.DeathMessage);
         //Then reset level
         GameController.gameController.ResetLevel();
     }

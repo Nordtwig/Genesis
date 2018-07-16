@@ -7,7 +7,7 @@ public class Goal : MonoBehaviour {
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player") {
-            print("you win the game!");
+            GameController.gameController.ShowMessage(StaticValues.MessageType.WinMessage);
         }
     }
 }
