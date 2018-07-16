@@ -31,7 +31,7 @@ public class Player : MonoBehaviour {
 	
     void FixedUpdate()
     {
-
+        print(spawnPoint);
         //Two different kinds of player movement, set in useRotation global boolean
         if (useRotation)
         {
