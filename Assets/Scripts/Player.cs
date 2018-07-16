@@ -23,7 +23,6 @@ public class Player : MonoBehaviour {
 
         isHoldingKey = false;
         spawnPoint = GameObject.Find("PlayerSpawnPoint").gameObject;
-        Debug.Log("Initiating Player");
 
         transform.position = spawnPoint.transform.position;
 
