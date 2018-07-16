@@ -7,10 +7,10 @@ public class GameController : MonoBehaviour {
     //Make the game controller a static singleton
     public static GameController gameController = null;
 
-    [SerializeField] GameObject player;
-    [SerializeField] List<GameObject> doors;
-    [SerializeField] List<GameObject> pickups;
-    [SerializeField] List<GameObject> enemies;
+    GameObject player;
+    List<GameObject> doors = new List<GameObject>();
+    List<GameObject> pickups = new List<GameObject>();
+    List<GameObject> enemies = new List<GameObject>();
 
     //Awake is called before Start functions
     void Awake()
@@ -37,26 +37,23 @@ public class GameController : MonoBehaviour {
         //Any initialization goes here
 
         //Sets references to all objects that vill be reset upon LevelReset
-        /*player = GameObject.Find("Player").gameObject;
+        player = GameObject.Find("Player").gameObject;
 
         Transform doorsCategory = GameObject.Find("Doors").gameObject.transform;
         foreach (Transform child in doorsCategory)
         {
-            //Debug.Log("Found a door with name: " + child.name);
             doors.Add(child.gameObject);
         }
         Transform pickupsCategory = GameObject.Find("Pickups").gameObject.transform;
         foreach (Transform child in pickupsCategory)
         {
-            //Debug.Log("Found a pickup with name: " + child.name);
             pickups.Add(child.gameObject);
         }
         Transform enemiesCategory = GameObject.Find("Enemies").gameObject.transform;
         foreach (Transform child in enemiesCategory)
         {
-            //Debug.Log("Found an enemy with name: " + child.name);
             enemies.Add(child.gameObject);
-        }*/
+        }
 
     }
 
