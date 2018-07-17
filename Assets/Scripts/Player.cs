@@ -12,6 +12,8 @@ public class Player : MonoBehaviour {
     [SerializeField] int movementSpeed; //A value around 3-10 is suitable
     [SerializeField] int turnSpeed; //A value around 200-500 is suitable
 
+    bool allowMovement;
+
     //Is set to true when key is picked up
     private bool isHoldingKey;
     private StaticValues.DoorKeyType heldKeyType;
@@ -22,6 +24,7 @@ public class Player : MonoBehaviour {
     void Start () {
 
         isHoldingKey = false;
+        allowMovement = true;
         spawnPoint = GameObject.Find("PlayerSpawnPoint").gameObject;
 
         transform.position = spawnPoint.transform.position;
@@ -30,24 +33,27 @@ public class Player : MonoBehaviour {
 	
     void FixedUpdate()
     {
-        //print(spawnPoint);
-        //Two different kinds of player movement, set in useRotation global boolean
-        if (useRotation)
+        if (allowMovement)
         {
-            var x = Input.GetAxis("Horizontal") * Time.deltaTime * turnSpeed;
-            var z = Input.GetAxis("Vertical") * Time.deltaTime * movementSpeed;
-            transform.Rotate(0, x, 0);
-            transform.Translate(0, 0, z);
-        }
-        else
-        {
+            //print(spawnPoint);
+            //Two different kinds of player movement, set in useRotation global boolean
+            if (useRotation)
+            {
+                var x = Input.GetAxis("Horizontal") * Time.deltaTime * turnSpeed;
+                var z = Input.GetAxis("Vertical") * Time.deltaTime * movementSpeed;
+                transform.Rotate(0, x, 0);
+                transform.Translate(0, 0, z);
+            }
+            else
+            {
 
-            var x = Input.GetAxis("Horizontal") * Time.deltaTime * movementSpeed;
-            var z = Input.GetAxis("Vertical") * Time.deltaTime * movementSpeed;
-            transform.Translate(x, 0, 0);
-            transform.Translate(0, 0, z);
+                var x = Input.GetAxis("Horizontal") * Time.deltaTime * movementSpeed;
+                var z = Input.GetAxis("Vertical") * Time.deltaTime * movementSpeed;
+                transform.Translate(x, 0, 0);
+                transform.Translate(0, 0, z);
+            }
         }
-        
+ 
     }
 
     public void AddKey(StaticValues.DoorKeyType type, Key newKeySpawnPoint)
@@ -99,15 +105,18 @@ public class Player : MonoBehaviour {
 
     public void PlayerDeath()
     {
+        //Disallow movement on death
+        allowMovement = false;
         //Show death message, any other things to do upon death
         GameController.gameController.ShowMessage(StaticValues.MessageType.DeathMessage);
         //Then reset level
-        GameController.gameController.ResetLevel();
+        GameController.gameController.ResetLevel(StaticValues.playerDeathDelay);
     }
 
     public void ResetPlayer()
     {
         RemoveKey();
         transform.position = spawnPoint.transform.position;
+        allowMovement = true;
     }
 }

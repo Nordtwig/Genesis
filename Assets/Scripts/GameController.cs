@@ -52,14 +52,19 @@ public class GameController : MonoBehaviour {
     //Super rough, just to finish the game loop for now!
     void Update()
     {
-        if (Input.GetKey(KeyCode.Escape)) // Press Esc for Main Menu
+        string sceneName = SceneManager.GetActiveScene().name;
+        if (sceneName != "Main Menu" && sceneName != "Credits")
         {
-            SceneManager.LoadScene(0);
+            if (Input.GetKey(KeyCode.Escape)) // Press Esc for Main Menu
+            {
+                SceneManager.LoadScene(0);
+            }
+            else if (Input.GetKey("r")) // Press R for Restart
+            {
+                ResetLevel(0);
+            }
         }
-        else if (Input.GetKey("r")) // Press R for Restart
-        {
-            ResetLevel();
-        }
+        
     }
 
     //Initializes the game when the first level is loaded
@@ -108,8 +113,15 @@ public class GameController : MonoBehaviour {
 
     //Call this to "restart" the level
     //Resets all interactable objects in the level, as well as the player
-    public void ResetLevel()
+    public void ResetLevel(float delay)
     {
+        StartCoroutine(ResetWithDelay(delay));
+    }
+    IEnumerator ResetWithDelay(float delay)
+    {
+
+        yield return new WaitForSeconds(delay);
+
         Player playerScript = player.gameObject.GetComponent("Player") as Player;
         playerScript.ResetPlayer();
 
@@ -119,17 +131,18 @@ public class GameController : MonoBehaviour {
             doorScript.ResetDoor();
         }
 
-        foreach (GameObject pickup in pickups){
+        foreach (GameObject pickup in pickups)
+        {
             PickUp pickupScript = pickup.gameObject.GetComponent<PickUp>() as PickUp;
             pickupScript.ResetPickup();
         }
-        
+
         foreach (GameObject enemy in enemies)
         {
             Enemy enemyScript = enemy.gameObject.GetComponent("Enemy") as Enemy;
             enemyScript.ResetEnemy();
         }
-        
+
     }
 
     //Call this to show a message in the Status window (define messages in StaticValues messageType)
@@ -140,8 +153,6 @@ public class GameController : MonoBehaviour {
 
         StartCoroutine(ShowStatusText(messageString, 1));
     }
-
-    //Shows a status text with a delay, call method ShowMessage to use this
     IEnumerator ShowStatusText(string message, float delay)
     {
         statusText.text = message;
@@ -156,11 +167,17 @@ public class GameController : MonoBehaviour {
 
     //Call this to trigger the next level of the game
     //If called when on the last level, loads Credits
-    public void NextLevel()
+    public void NextLevel(float delay)
     {
+        StartCoroutine(NextLevelDelay(delay));
+
+    }
+    IEnumerator NextLevelDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
         currentLevel += 1;
         SceneManager.LoadScene(StaticValues.levelList[currentLevel]);
-        
     }
 
     //Initializes the level when a new level is loaded
@@ -172,5 +189,6 @@ public class GameController : MonoBehaviour {
             InitLevel();
         } 
     }
+
 
 }
