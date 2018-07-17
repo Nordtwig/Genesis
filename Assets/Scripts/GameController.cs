@@ -9,6 +9,8 @@ public class GameController : MonoBehaviour {
     //Make the game controller a static singleton
     public static GameController gameController = null;
 
+    int currentLevel;
+
     GameObject canvas;
     Text scoreText;
     Text statusText;
@@ -55,37 +57,40 @@ public class GameController : MonoBehaviour {
         }
         else if (Input.GetKey("r")) // Press R for Restart
         {
-            Scene scene = SceneManager.GetActiveScene();
-            SceneManager.LoadScene(scene.name);
+            //Scene scene = SceneManager.GetActiveScene();
+            //SceneManager.LoadScene(scene.name);
+            ResetLevel();
         }
     }
 
+    //Initializes the game when the first level is loaded
+    //Sets the level, and sets references to UI components that the class will access
     void InitGame()
     {
-        //Any initialization goes here
+        currentLevel = 0;
 
-        //Sets necessary references to UI components
         canvas = GameObject.Find("Canvas");
         scoreText = GameObject.Find("Canvas/ScoreText").GetComponent<Text>();
         statusText = GameObject.Find("Canvas/StatusText").GetComponent<Text>();
         scoreBackground = GameObject.Find("Canvas/ScoreBackground").GetComponent<Image>();
         statusBackground = GameObject.Find("Canvas/StatusBackground").GetComponent<Image>();
-        
-        
-
     }
 
-    public void InitLevel()
+    //Initializes the newly loaded level
+    //Sets references to all interactable objects in the level (enemies, doors, pickups)
+    void InitLevel()
     {
 
+        //Bug here where this function is sometimes called multiple times
         Debug.Log("Initiating level");
+
         //Clears any old references
         doors = new List<GameObject>();
         pickups = new List<GameObject>();
         enemies = new List<GameObject>();
 
 
-        //Sets references to all objects that vill be reset upon LevelReset
+        //Sets references to all interactable objects in the level
         player = GameObject.Find("Player").gameObject;
 
         Transform doorsCategory = GameObject.Find("Doors").gameObject.transform;
@@ -105,6 +110,8 @@ public class GameController : MonoBehaviour {
         }
     }
 
+    //Call this to "restart" the level
+    //Resets all interactable objects in the level, as well as the player
     public void ResetLevel()
     {
         Player playerScript = player.gameObject.GetComponent("Player") as Player;
@@ -129,7 +136,7 @@ public class GameController : MonoBehaviour {
         
     }
 
-
+    //Call this to show a message in the Status window (define messages in StaticValues messageType)
     public void ShowMessage(StaticValues.MessageType messageType)
     {
         string messageString = "";
@@ -138,6 +145,7 @@ public class GameController : MonoBehaviour {
         StartCoroutine(ShowStatusText(messageString, 1));
     }
 
+    //Shows a status text with a delay, call method ShowMessage to use this
     IEnumerator ShowStatusText(string message, float delay)
     {
         statusText.text = message;
@@ -150,17 +158,20 @@ public class GameController : MonoBehaviour {
         statusBackground.enabled = false;
     }
 
-    public void ChangeScene()
+    //Call this to trigger the next level of the game
+    //If called when on the last level, loads Credits
+    public void NextLevel()
     {
-        //Later have a system for what level to change to
-        SceneManager.LoadScene("Test Level");
+        currentLevel += 1;
+        SceneManager.LoadScene(StaticValues.levelList[currentLevel]);
         
     }
 
+    //Initializes the level when a new level is loaded
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // Only call InitLevel if outside Menu
-        if (scene.buildIndex != 0)
+        // Only call InitLevel if outside Menu and Credits
+        if (scene.name != "Main Menu" && scene.name != "Credits")
         {
             InitLevel();
         } 

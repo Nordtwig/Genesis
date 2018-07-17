@@ -10,7 +10,7 @@ public class MainMenu : MonoBehaviour {
     }
 
     public void StartCredits() {
-        SceneManager.LoadScene(2); // Hardcoded, consider getting at runtime.
+        SceneManager.LoadScene(StaticValues.levelList[0]); // Hardcoded, consider getting at runtime.
     }
 
     public void ExitGame() {

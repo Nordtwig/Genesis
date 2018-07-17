@@ -8,7 +8,7 @@ public class Goal : MonoBehaviour {
     {
         if (other.tag == "Player") {
             GameController.gameController.ShowMessage(StaticValues.MessageType.WinMessage);
-            GameController.gameController.ChangeScene();
+            GameController.gameController.NextLevel();
         }
     }
 }
