@@ -63,7 +63,7 @@ public class GameController : MonoBehaviour {
     public void InitLevel()
     {
 
-        Debug.Log("Initing level");
+        Debug.Log("Initiating level");
         //Clears any old references
         doors = new List<GameObject>();
         pickups = new List<GameObject>();

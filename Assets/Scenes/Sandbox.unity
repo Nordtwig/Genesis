@@ -712,6 +712,108 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114152043508277086, guid: 02b5b181ab2d41e458fa8aff7a22f465,
+        type: 2}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 6ac8a508cc99af949a1cb337fc075d2d,
+        type: 3}
+    - target: {fileID: 114152043508277086, guid: 02b5b181ab2d41e458fa8aff7a22f465,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114839120858703072, guid: 02b5b181ab2d41e458fa8aff7a22f465,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114152043508277086, guid: 02b5b181ab2d41e458fa8aff7a22f465,
+        type: 2}
+      propertyPath: m_Text
+      value: You died
+      objectReference: {fileID: 0}
+    - target: {fileID: 114199022712679484, guid: 02b5b181ab2d41e458fa8aff7a22f465,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114398836865930942, guid: 02b5b181ab2d41e458fa8aff7a22f465,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114199022712679484, guid: 02b5b181ab2d41e458fa8aff7a22f465,
+        type: 2}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 6ac8a508cc99af949a1cb337fc075d2d,
+        type: 3}
+    - target: {fileID: 114199022712679484, guid: 02b5b181ab2d41e458fa8aff7a22f465,
+        type: 2}
+      propertyPath: m_FontData.m_FontSize
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114199022712679484, guid: 02b5b181ab2d41e458fa8aff7a22f465,
+        type: 2}
+      propertyPath: m_FontData.m_MinSize
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114199022712679484, guid: 02b5b181ab2d41e458fa8aff7a22f465,
+        type: 2}
+      propertyPath: m_FontData.m_FontStyle
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114199022712679484, guid: 02b5b181ab2d41e458fa8aff7a22f465,
+        type: 2}
+      propertyPath: m_Text
+      value: 12345
+      objectReference: {fileID: 0}
+    - target: {fileID: 224388566781739880, guid: 02b5b181ab2d41e458fa8aff7a22f465,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 41.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 224388566781739880, guid: 02b5b181ab2d41e458fa8aff7a22f465,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 68.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 224388566781739880, guid: 02b5b181ab2d41e458fa8aff7a22f465,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -24.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224388566781739880, guid: 02b5b181ab2d41e458fa8aff7a22f465,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 32.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 224158656239318418, guid: 02b5b181ab2d41e458fa8aff7a22f465,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 68.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 224158656239318418, guid: 02b5b181ab2d41e458fa8aff7a22f465,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 32.205
+      objectReference: {fileID: 0}
+    - target: {fileID: 224158656239318418, guid: 02b5b181ab2d41e458fa8aff7a22f465,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114152043508277086, guid: 02b5b181ab2d41e458fa8aff7a22f465,
+        type: 2}
+      propertyPath: m_FontData.m_FontStyle
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114152043508277086, guid: 02b5b181ab2d41e458fa8aff7a22f465,
+        type: 2}
+      propertyPath: m_FontData.m_FontSize
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 02b5b181ab2d41e458fa8aff7a22f465, type: 2}
   m_IsPrefabAsset: 0
