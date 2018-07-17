@@ -33,16 +33,17 @@ public class GameController : MonoBehaviour {
         else if (gameController != this)
         {
             Destroy(gameObject);
+            return;
         }
-
-        //Add a listener function to detect scene change
-        SceneManager.sceneLoaded += OnSceneLoaded;
 
         InitGame();
 
         //Do not destroy gamecontroller upon reloading scene
         DontDestroyOnLoad(gameObject);
         DontDestroyOnLoad(canvas);
+
+        //Add a listener function to detect scene change
+        SceneManager.sceneLoaded += OnSceneLoaded;
 
 
     }
@@ -57,23 +58,22 @@ public class GameController : MonoBehaviour {
         }
         else if (Input.GetKey("r")) // Press R for Restart
         {
-            //Scene scene = SceneManager.GetActiveScene();
-            //SceneManager.LoadScene(scene.name);
             ResetLevel();
         }
     }
 
     //Initializes the game when the first level is loaded
-    //Sets the level, and sets references to UI components that the class will access
+    //Sets references to UI components that the class will access
+    //Sets the level
     void InitGame()
     {
-        currentLevel = 0;
-
         canvas = GameObject.Find("Canvas");
         scoreText = GameObject.Find("Canvas/ScoreText").GetComponent<Text>();
         statusText = GameObject.Find("Canvas/StatusText").GetComponent<Text>();
         scoreBackground = GameObject.Find("Canvas/ScoreBackground").GetComponent<Image>();
         statusBackground = GameObject.Find("Canvas/StatusBackground").GetComponent<Image>();
+
+        currentLevel = 0;
     }
 
     //Initializes the newly loaded level
@@ -81,14 +81,10 @@ public class GameController : MonoBehaviour {
     void InitLevel()
     {
 
-        //Bug here where this function is sometimes called multiple times
-        Debug.Log("Initiating level");
-
         //Clears any old references
         doors = new List<GameObject>();
         pickups = new List<GameObject>();
         enemies = new List<GameObject>();
-
 
         //Sets references to all interactable objects in the level
         player = GameObject.Find("Player").gameObject;
@@ -176,4 +172,5 @@ public class GameController : MonoBehaviour {
             InitLevel();
         } 
     }
+
 }
