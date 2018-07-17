@@ -45,6 +45,21 @@ public class GameController : MonoBehaviour {
 
     }
 
+    //Noah's ugly code corner
+    //Super rough, just to finish the game loop for now!
+    void Update()
+    {
+        if (Input.GetKey(KeyCode.Escape)) // Press Esc for Main Menu
+        {
+            SceneManager.LoadScene(0);
+        }
+        else if (Input.GetKey("r")) // Press R for Restart
+        {
+            Scene scene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(scene.name);
+        }
+    }
+
     void InitGame()
     {
         //Any initialization goes here
@@ -144,8 +159,10 @@ public class GameController : MonoBehaviour {
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        InitLevel();
+        // Only call InitLevel if outside Menu
+        if (scene.buildIndex != 0)
+        {
+            InitLevel();
+        } 
     }
-
-
 }

@@ -372,7 +372,7 @@ Prefab:
     - target: {fileID: 114757080082143734, guid: d58ffc2c771a06d4bb9e1bc5c3cc6f9c,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GoCredits
+      value: StartCredits
       objectReference: {fileID: 0}
     - target: {fileID: 114757080082143734, guid: d58ffc2c771a06d4bb9e1bc5c3cc6f9c,
         type: 2}

@@ -125,6 +125,7 @@ GameObject:
   - component: {fileID: 84982552}
   - component: {fileID: 84982551}
   - component: {fileID: 84982550}
+  - component: {fileID: 84982553}
   m_Layer: 5
   m_Name: BackButton
   m_TagString: Untagged
@@ -149,7 +150,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 198.05, y: 83}
+  m_AnchoredPosition: {x: 520.8, y: 225}
   m_SizeDelta: {x: 271.8, y: 113.20001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &84982550
@@ -191,7 +192,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 84982551}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 84982553}
+        m_MethodName: ReturnMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &84982551
@@ -230,6 +242,17 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 84982548}
   m_CullTransparentMesh: 0
+--- !u!114 &84982553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 84982548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56fa0732ddd0ee74db752977b18e5b58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &127846601
 Prefab:
   m_ObjectHideFlags: 0
