@@ -89,7 +89,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
-  m_LightingDataAsset: {fileID: 112000002, guid: b5aa64f1109799047aa34597ae9e1582,
+  m_LightingDataAsset: {fileID: 112000002, guid: 6479861cadcb4494dbe85095f894a793,
     type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -197,7 +197,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 42.561, y: 0, z: 0}
 --- !u!1001 &125216875
 Prefab:
@@ -820,6 +820,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 224491914799725474, guid: 02b5b181ab2d41e458fa8aff7a22f465,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 02b5b181ab2d41e458fa8aff7a22f465, type: 2}
   m_IsPrefabAsset: 0
@@ -1217,7 +1222,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 69.318, y: -30.000002, z: 0}
 --- !u!1001 &1972932140
 Prefab:

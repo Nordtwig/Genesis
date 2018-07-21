@@ -567,8 +567,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 520.8, y: -690}
-  m_SizeDelta: {x: 881.5, y: 80.4}
+  m_AnchoredPosition: {x: 542.7, y: -696.9}
+  m_SizeDelta: {x: 925.3, y: 94.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &713526290
 MonoBehaviour:
@@ -603,7 +603,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '     Noah / producer'
+  m_Text: '     Noah / production'
 --- !u!222 &713526291
 CanvasRenderer:
   m_ObjectHideFlags: 0
