@@ -6,12 +6,13 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour {
 
     public void StartGame() {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(StaticValues.levelList[0]);
     }
 
     public void StartCredits() {
         //SceneManager.LoadScene(StaticValues.levelList[0]); // Hardcoded, consider getting at runtime.
-        SceneManager.LoadScene(4);
+        //SceneManager.LoadScene(4);
+        SceneManager.LoadScene("Credits");
     }
 
     public void ExitGame() {

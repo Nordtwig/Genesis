@@ -37,6 +37,11 @@ public class Player : MonoBehaviour {
 
         rigidBody = gameObject.GetComponent<Rigidbody>();
 
+        if(movementType == MovementType.RigidbodyMovement)
+        {
+            transform.GetComponent<BoxCollider>().material = (PhysicMaterial)Resources.Load("Materials/NoFriction");
+        }
+
     }
 	
     void FixedUpdate()
@@ -66,18 +71,11 @@ public class Player : MonoBehaviour {
 
                 Vector3 movement = new Vector3(horizontal, 0, vertical);
                 rigidBody.velocity = movement * movementSpeed;
-                rigidBody.position = new Vector3(rigidBody.position.x, 0, rigidBody.position.z);
             }
-
-            
-            
-            
-
 
         }
 
-
-        
+    
 
     }
 
