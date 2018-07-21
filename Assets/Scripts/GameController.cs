@@ -11,6 +11,13 @@ public class GameController : MonoBehaviour {
 
     int currentLevel;
 
+    float timer;
+    int totalScore;
+    int levelScore;
+    bool scoreIsDecaying;
+    [SerializeField] int scoreDecayRate;
+    [SerializeField] float scoreDecayInterval;
+
     GameObject canvas;
     Text scoreText;
     Text statusText;
@@ -48,8 +55,7 @@ public class GameController : MonoBehaviour {
 
     }
 
-    //Noah's ugly code corner
-    //Super rough, just to finish the game loop for now!
+
     void Update()
     {
         string sceneName = SceneManager.GetActiveScene().name;
@@ -64,6 +70,26 @@ public class GameController : MonoBehaviour {
                 ResetLevel(0);
             }
         }
+
+        //Score decay
+        if(scoreIsDecaying && levelScore > 0)
+        {
+            timer += Time.deltaTime;
+            if (timer > scoreDecayInterval)
+            {
+                levelScore -= scoreDecayRate;
+                timer -= scoreDecayInterval;
+            }
+
+            if(levelScore < 0)
+            {
+                levelScore = 0;
+            }
+        }
+
+        //Update score text
+        scoreText.text = "" + levelScore;
+
         
     }
 
@@ -79,6 +105,7 @@ public class GameController : MonoBehaviour {
         statusBackground = GameObject.Find("Canvas/StatusBackground").GetComponent<Image>();
 
         currentLevel = 0;
+        totalScore = 0;
     }
 
     //Initializes the newly loaded level
@@ -109,12 +136,22 @@ public class GameController : MonoBehaviour {
         {
             enemies.Add(child.gameObject);
         }
+
+        //Initialize level score
+        levelScore = 1000;
+        scoreIsDecaying = true;
+
+        //Show level score
+        scoreBackground.enabled = true;
+        scoreText.enabled = true;
+
     }
 
     //Call this to "restart" the level
     //Resets all interactable objects in the level, as well as the player
     public void ResetLevel(float delay)
     {
+        scoreIsDecaying = false;
         StartCoroutine(ResetWithDelay(delay));
     }
     IEnumerator ResetWithDelay(float delay)
@@ -143,15 +180,19 @@ public class GameController : MonoBehaviour {
             enemyScript.ResetEnemy();
         }
 
+        scoreIsDecaying = true;
+
     }
 
     //Call this to show a message in the Status window (define messages in StaticValues messageType)
-    public void ShowMessage(StaticValues.MessageType messageType)
+    //The optionalExtra parameter is, indeed, optional. Adds an optional extra string at the end of the message.
+    public void ShowMessage(StaticValues.MessageType messageType, string optionalExtra = "")
     {
         string messageString = "";
         StaticValues.messages.TryGetValue(messageType, out messageString);
+        messageString = messageString + optionalExtra;
 
-        StartCoroutine(ShowStatusText(messageString, 1));
+        StartCoroutine(ShowStatusText(messageString, 2));
     }
     IEnumerator ShowStatusText(string message, float delay)
     {
@@ -169,15 +210,37 @@ public class GameController : MonoBehaviour {
     //If called when on the last level, loads Credits
     public void NextLevel(float delay)
     {
+        scoreIsDecaying = false;
+        totalScore += levelScore;
         StartCoroutine(NextLevelDelay(delay));
 
     }
     IEnumerator NextLevelDelay(float delay)
     {
+        bool gameFinished = false;
+        currentLevel += 1;
+
+        if (currentLevel == StaticValues.levelList.Length)
+        {
+            //If this was the last level:
+            //Reset everything to prepare for main menu, then show total score
+            gameFinished = true;
+            FinishGame();
+
+        }
+
         yield return new WaitForSeconds(delay);
 
-        currentLevel += 1;
-        SceneManager.LoadScene(StaticValues.levelList[currentLevel]);
+        if (gameFinished)
+        {
+            SceneManager.LoadScene("Credits");
+        }
+        else
+        {
+            SceneManager.LoadScene(StaticValues.levelList[currentLevel]);
+        }
+        
+
     }
 
     //Initializes the level when a new level is loaded
@@ -188,6 +251,17 @@ public class GameController : MonoBehaviour {
         {
             InitLevel();
         } 
+    }
+
+    private void FinishGame()
+    {
+        currentLevel = 0;
+        scoreBackground.enabled = false;
+        scoreText.enabled = false;
+        statusBackground.enabled = false;
+        statusText.enabled = false;
+
+        ShowMessage(StaticValues.MessageType.TotalScoreMessage, totalScore.ToString());
     }
 
 
