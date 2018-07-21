@@ -6,8 +6,12 @@ public class Player : MonoBehaviour {
 
     GameObject spawnPoint;
 
-    //Set useRotation to preferred movement type
-    [SerializeField] bool useRotation;
+    //Set preferred movement type
+    enum MovementType { TranslateNoRotation, TranslateWithRotation, RigidbodyMovement };
+    [SerializeField] MovementType movementType;
+
+
+
     //Set speed of rotation and movement
     [SerializeField] int movementSpeed; //A value around 3-10 is suitable
     [SerializeField] int turnSpeed; //A value around 200-500 is suitable
@@ -21,6 +25,8 @@ public class Player : MonoBehaviour {
     Key keySpawnPoint;
     GameObject keyModel;
 
+    Rigidbody rigidBody;
+
     void Start () {
 
         isHoldingKey = false;
@@ -29,31 +35,50 @@ public class Player : MonoBehaviour {
 
         transform.position = spawnPoint.transform.position;
 
+        rigidBody = gameObject.GetComponent<Rigidbody>();
+
     }
 	
     void FixedUpdate()
     {
         if (allowMovement)
         {
-            //print(spawnPoint);
-            //Two different kinds of player movement, set in useRotation global boolean
-            if (useRotation)
+            //Three different kinds of player movement, set in inspector
+
+            if(movementType == MovementType.TranslateNoRotation)
+            {
+                var x = Input.GetAxis("Horizontal") * Time.deltaTime * movementSpeed;
+                var z = Input.GetAxis("Vertical") * Time.deltaTime * movementSpeed;
+                transform.Translate(x, 0, 0);
+                transform.Translate(0, 0, z);
+            }
+            else if (movementType == MovementType.TranslateWithRotation)
             {
                 var x = Input.GetAxis("Horizontal") * Time.deltaTime * turnSpeed;
                 var z = Input.GetAxis("Vertical") * Time.deltaTime * movementSpeed;
                 transform.Rotate(0, x, 0);
                 transform.Translate(0, 0, z);
             }
-            else
+            else if (movementType == MovementType.RigidbodyMovement)
             {
+                float horizontal = Input.GetAxis("Horizontal");
+                float vertical = Input.GetAxis("Vertical");
 
-                var x = Input.GetAxis("Horizontal") * Time.deltaTime * movementSpeed;
-                var z = Input.GetAxis("Vertical") * Time.deltaTime * movementSpeed;
-                transform.Translate(x, 0, 0);
-                transform.Translate(0, 0, z);
+                Vector3 movement = new Vector3(horizontal, 0, vertical);
+                rigidBody.velocity = movement * movementSpeed;
+                rigidBody.position = new Vector3(rigidBody.position.x, 0, rigidBody.position.z);
             }
+
+            
+            
+            
+
+
         }
- 
+
+
+        
+
     }
 
     public void AddKey(StaticValues.DoorKeyType type, Key newKeySpawnPoint)
