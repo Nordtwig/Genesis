@@ -141,7 +141,7 @@ public class GameController : MonoBehaviour {
 
 
         //Initialize level score
-        levelScore = 1000;
+        levelScore = StaticValues.levelList[currentLevel].levelScore;
         scoreIsDecaying = true;
 
         //Show level score
@@ -240,7 +240,7 @@ public class GameController : MonoBehaviour {
         }
         else
         {
-            SceneManager.LoadScene(StaticValues.levelList[currentLevel]);
+            SceneManager.LoadScene(StaticValues.levelList[currentLevel].levelName);
         }
         
 

@@ -7,8 +7,28 @@ public static class StaticValues {
     public enum DoorKeyType { Yellow, Green, White };
     public enum MessageType { DeathMessage, WinMessage, TotalScoreMessage };
 
-    //The playable levels
-    public static string[] levelList = { "Level 1", "Easy Level 1", "Easy Level 2", "Test Level"};
+    //Class to hold level info
+    public class Level
+    {
+        public string levelName;
+        public int levelScore;
+
+        public Level (string levelName, int levelScore)
+        {
+            this.levelName = levelName;
+            this.levelScore = levelScore;
+        }
+
+    }
+
+    //The playable levels and their scores
+    public static Level[] levelList = {
+        new Level("Level 1", 0),
+        new Level("Easy Level 1", 500),
+        new Level("Easy Level 2", 700),
+        new Level("Test Level", 1000),
+    };
+
 
     //Delays for player death and level win (in seconds)
     public static float playerDeathDelay = 1;

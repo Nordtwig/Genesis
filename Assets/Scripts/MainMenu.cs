@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour {
 
     public void StartGame() {
-        SceneManager.LoadScene(StaticValues.levelList[0]);
+        SceneManager.LoadScene(StaticValues.levelList[0].levelName);
     }
 
     public void StartCredits() {
