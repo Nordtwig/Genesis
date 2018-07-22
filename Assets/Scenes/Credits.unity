@@ -151,7 +151,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 501, y: 210}
+  m_AnchoredPosition: {x: 181.15, y: 95}
   m_SizeDelta: {x: 271.8, y: 113.20001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &84982550
@@ -330,7 +330,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 520.8, y: -524.1}
+  m_AnchoredPosition: {x: 572, y: -524.1}
   m_SizeDelta: {x: 881.5, y: 95.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &430589707
@@ -360,13 +360,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 300
-    m_Alignment: 4
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '   Linn / coding'
+  m_Text: Linn / coding
 --- !u!222 &430589708
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -409,7 +409,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 515, y: -164}
+  m_AnchoredPosition: {x: 311, y: -107}
   m_SizeDelta: {x: 531.5, y: 147.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &513025695
@@ -488,7 +488,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 520.8, y: -341.8}
+  m_AnchoredPosition: {x: 572, y: -341.8}
   m_SizeDelta: {x: 881.5, y: 107.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &600836160
@@ -524,7 +524,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: ' Fredrik  / Comms'
+  m_Text: Fredrik  / Comms
 --- !u!222 &600836161
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -567,8 +567,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 542.7, y: -696.9}
-  m_SizeDelta: {x: 925.3, y: 94.4}
+  m_AnchoredPosition: {x: 572, y: -692.6}
+  m_SizeDelta: {x: 881.5, y: 94.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &713526290
 MonoBehaviour:
@@ -603,7 +603,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '     Noah / production'
+  m_Text: Noah / production
 --- !u!222 &713526291
 CanvasRenderer:
   m_ObjectHideFlags: 0
