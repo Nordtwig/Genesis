@@ -131,11 +131,14 @@ public class GameController : MonoBehaviour {
         {
             pickups.Add(child.gameObject);
         }
-        Transform enemiesCategory = GameObject.Find("Enemies").gameObject.transform;
-        foreach (Transform child in enemiesCategory)
-        {
-            enemies.Add(child.gameObject);
+        if (GameObject.Find("Enemies") != null) {
+            Transform enemiesCategory = GameObject.Find("Enemies").gameObject.transform;
+            foreach (Transform child in enemiesCategory)
+            {
+                enemies.Add(child.gameObject);
+            }
         }
+
 
         //Initialize level score
         levelScore = 1000;

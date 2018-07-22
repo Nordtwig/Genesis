@@ -8,7 +8,7 @@ public static class StaticValues {
     public enum MessageType { DeathMessage, WinMessage, TotalScoreMessage };
 
     //The playable levels
-    public static string[] levelList = { "Easy Level 1", "Easy Level 2", "Test Level"};
+    public static string[] levelList = { "Level 1", "Easy Level 1", "Easy Level 2", "Test Level"};
 
     //Delays for player death and level win (in seconds)
     public static float playerDeathDelay = 1;
