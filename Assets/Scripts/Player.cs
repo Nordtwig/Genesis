@@ -15,6 +15,7 @@ public class Player : MonoBehaviour {
     //Set speed of rotation and movement
     [SerializeField] int movementSpeed; //A value around 3-10 is suitable
     [SerializeField] int turnSpeed; //A value around 200-500 is suitable
+    [SerializeField] float angularSpeed; //A value between 0.6-0.8 is suitable
 
     bool allowMovement;
 
@@ -70,7 +71,16 @@ public class Player : MonoBehaviour {
                 float vertical = Input.GetAxis("Vertical");
 
                 Vector3 movement = new Vector3(horizontal, 0, vertical);
-                rigidBody.velocity = movement * movementSpeed;
+
+                if (horizontal != 0 && vertical != 0)
+                {
+                    rigidBody.velocity = movement * movementSpeed * angularSpeed;
+                }
+                else
+                {
+                    rigidBody.velocity = movement * movementSpeed;
+                }
+
             }
 
         }

@@ -156,3 +156,4 @@ MonoBehaviour:
   movementType: 2
   movementSpeed: 6
   turnSpeed: 200
+  angularSpeed: 0.8
