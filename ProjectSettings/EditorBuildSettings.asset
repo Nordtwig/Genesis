@@ -9,8 +9,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Main Menu.unity
     guid: ff59f8838336b2743946c623c1bdeff2
   - enabled: 1
-    path: Assets/Scenes/Level 1.unity
+    path: Assets/Scenes/Movement Tutorial.unity
     guid: 33f939a0d5518a54aa254ba310e4bd84
+  - enabled: 1
+    path: Assets/Scenes/Enemy Tutorial.unity
+    guid: 570c5418f67a5ac459fae5ccbea9e6e7
+  - enabled: 1
+    path: Assets/Scenes/Door Tutorial.unity
+    guid: ef28d19494d6f2c49956164fe2f4019d
   - enabled: 1
     path: Assets/Scenes/Easy Level 1.unity
     guid: a05c9bacbb6ac554ab27e8a37a101274
