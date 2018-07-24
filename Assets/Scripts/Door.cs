@@ -6,11 +6,39 @@ public class Door : MonoBehaviour {
 
     [SerializeField] StaticValues.DoorKeyType doorType;
 
-    // Use this for initialization
+    BoxCollider doorCollider;
+
+    bool isSliding;
+    Vector3 originalPosition;
+    float endPositionY;
+
+
     void Start () {
-		
-	}
-	
+        isSliding = false;
+
+        doorCollider = transform.GetComponent<BoxCollider>();
+
+        originalPosition = transform.position;
+        endPositionY = originalPosition.y - doorCollider.size.y;
+    }
+
+    void Update()
+    {
+        if (isSliding)
+        {
+            
+            var move = Time.deltaTime * 5;
+            transform.Translate(0, -move, 0);
+
+            if (transform.position.y < endPositionY)
+            {
+                isSliding = false;
+            }
+
+        }
+
+    }
+
 
     void OnCollisionEnter(Collision c)
     {
@@ -27,12 +55,16 @@ public class Door : MonoBehaviour {
     void OpenDoor(Player playerScript)
     {
         playerScript.RemoveKey();
-        gameObject.SetActive(false);
+
+        doorCollider.enabled = false;
+        isSliding = true;
     }
 
     public void ResetDoor()
     {
-        gameObject.SetActive(true);
+        doorCollider.enabled = true;
+        transform.position = originalPosition;
     }
+
 
 }
