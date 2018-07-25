@@ -5,6 +5,8 @@ using UnityEngine;
 public class Door : MonoBehaviour {
 
     [SerializeField] StaticValues.DoorKeyType doorType;
+    [SerializeField] AudioSource doorSource;
+    [SerializeField] AudioClip slideDoorSound;
 
     BoxCollider doorCollider;
 
@@ -14,6 +16,8 @@ public class Door : MonoBehaviour {
 
 
     void Start () {
+        doorSource = GetComponent<AudioSource>();
+
         isSliding = false;
 
         doorCollider = transform.GetComponent<BoxCollider>();
@@ -26,8 +30,8 @@ public class Door : MonoBehaviour {
     {
         if (isSliding)
         {
-            
-            var move = Time.deltaTime * 5;
+
+            var move = Time.deltaTime * 4;
             transform.Translate(0, -move, 0);
 
             if (transform.position.y < endPositionY)
@@ -47,6 +51,7 @@ public class Door : MonoBehaviour {
             Player playerScript = c.gameObject.GetComponent("Player") as Player;
             if (playerScript.IsHoldingKey() && playerScript.HeldKeyType() == doorType)
             {
+                doorSource.PlayOneShot(slideDoorSound, 1.0f);
                 OpenDoor(playerScript);
             }
         }
