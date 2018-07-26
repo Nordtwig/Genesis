@@ -7,12 +7,15 @@ public class Enemy : MonoBehaviour {
     [SerializeField] int movementSpeed;
     enum MovementType { x, z, none };
     [SerializeField] MovementType movementType;
+    [SerializeField] AudioSource enemySource;
+    [SerializeField] AudioClip deathSound;
 
     Vector3 spawnPoint;
 
     // Use this for initialization
     void Start() {
         spawnPoint = transform.position;
+        enemySource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -44,6 +47,7 @@ public class Enemy : MonoBehaviour {
         {
             Player playerScript = other.gameObject.GetComponent("Player") as Player;
             playerScript.PlayerDeath();
+            enemySource.PlayOneShot(deathSound, 1.0f);
         }
         else {
             //Collision with environment, reverse direction
