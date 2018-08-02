@@ -17,6 +17,10 @@ public class Player : MonoBehaviour {
     [SerializeField] int turnSpeed; //A value around 200-500 is suitable
     [SerializeField] float angularSpeed; //A value between 0.6-0.8 is suitable
 
+
+    [SerializeField] AudioSource playerSource;
+    [SerializeField] AudioClip pickUpSound;
+
     bool allowMovement;
 
     //Is set to true when key is picked up
@@ -29,6 +33,7 @@ public class Player : MonoBehaviour {
     Rigidbody rigidBody;
 
     void Start () {
+        playerSource = GetComponent<AudioSource>();
 
         isHoldingKey = false;
         allowMovement = true;
@@ -151,5 +156,12 @@ public class Player : MonoBehaviour {
         RemoveKey();
         transform.position = spawnPoint.transform.position;
         allowMovement = true;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "PickUp") {
+            playerSource.PlayOneShot(pickUpSound, 1.0f);
+        }
     }
 }
