@@ -26,6 +26,7 @@ public static class StaticValues {
         new Level("Movement Tutorial", 0),
         new Level("Enemy Tutorial", 0),
         new Level("Door Tutorial", 0),
+        new Level("Final Tutorial", 0),
         new Level("Easy Level 1", 500),
         new Level("Easy Level 2", 700),
         new Level("Test Level", 1000),
