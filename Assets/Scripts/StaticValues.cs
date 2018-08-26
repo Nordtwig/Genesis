@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class StaticValues {
 
-    public enum DoorKeyType { Yellow, Green, White };
+    public enum DoorKeyType { Yellow, Green, White, Orange };
     public enum MessageType { DeathMessage, WinMessage, TotalScoreMessage };
 
     //Class to hold level info
@@ -29,6 +29,8 @@ public static class StaticValues {
         new Level("Final Tutorial", 0),
         new Level("Easy Level 1", 500),
         new Level("Easy Level 2", 700),
+        new Level("Level 4", 700),
+        new Level("Level 3", 800),
         new Level("Test Level", 1000),
     };
 
